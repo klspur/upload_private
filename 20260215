@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快樂！</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #8DAA91;
+            --warm-cream: #FDFBF7;
+            --soft-gray: #6B7280;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--warm-cream);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .cursive {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* 柔和背景微光 */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(141, 170, 145, 0.12) 0%, rgba(253, 251, 247, 1) 100%);
+            z-index: -1;
+        }
+
+        /* 內容容器 */
+        .content-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 主卡片設計 */
+        .main-card {
+            background: white;
+            border-radius: 3rem;
+            box-shadow: 0 20px 50px rgba(141, 170, 145, 0.1);
+            overflow: hidden;
+            border: 1px solid rgba(141, 170, 145, 0.05);
+            position: relative;
+        }
+
+        /* 頂部裝飾條 */
+        .card-accent {
+            height: 8px;
+            background: linear-gradient(to right, #C2D3C6, var(--primary-green), #C2D3C6);
+        }
+
+        /* 動畫效果 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealAnim 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes revealAnim {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 裝飾性大引號 */
+        .quote-mark {
+            font-family: serif;
+            font-size: 80px;
+            line-height: 1;
+            color: var(--primary-green);
+            opacity: 0.15;
+            position: absolute;
+        }
+
+        /* 許願按鈕 */
+        .wish-button {
+            background-color: var(--primary-green);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            letter-spacing: 0.1em;
+        }
+
+        .wish-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(141, 170, 145, 0.3);
+        }
+
+        .wish-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="content-wrapper">
+
+        <!-- 標題區 -->
+        <header class="text-center mb-10 reveal" style="animation-delay: 0.2s;">
+            <p class="cursive text-4xl md:text-5xl text-[#8DAA91] mb-2">Happy Birthday</p>
+            <div class="h-px w-12 bg-[#8DAA91] opacity-20 mx-auto"></div>
+        </header>
+
+        <!-- 主要祝福卡片 -->
+        <article class="main-card reveal" style="animation-delay: 0.4s;">
+            <div class="card-accent"></div>
+
+            <div class="p-10 md:p-16 relative">
+                <!-- 左上引號 -->
+                <span class="quote-mark top-6 left-6">“</span>
+
+                <div class="relative z-10">
+                    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-center tracking-[0.3em]">
+                        生日快樂
+                    </h1>
+
+                    <div class="text-gray-500 leading-loose space-y-8 text-center text-lg font-light">
+                        <p>
+                            趁著這次好姐妹的生日，<br>
+                            我想用一個不太一樣的方式祝福妳。
+                        </p>
+                        <p>
+                            其實我也不知道該寫些什麼，<br>
+                            寫著寫著反而覺得有點好笑哈哈；<br>
+                            不過至少，能用一種特別一點的方式跟妳說：生日快樂。
+                        </p>
+                        <p>
+                            特地做出這種奇怪東西給妳的人，大概也只有我了吧！
+                        </p>
+                        <p>
+                            妳可以先默默在心裡許下一個小小的生日願望，<br>
+                            然後點擊下方的按鈕—— <br>
+                            說不定真的會有神奇的事情發生喔！
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 右下引號 -->
+                <span class="quote-mark bottom-2 right-8">”</span>
+            </div>
+        </article>
+
+        <!-- 許願互動區 -->
+        <div class="mt-16 text-center reveal" style="animation-delay: 0.7s;">
+            <p class="text-stone-400 text-xs mb-6 tracking-[0.4em] uppercase">Close your eyes and make a wish</p>
+
+            <button id="btnWish" class="wish-button text-white px-12 py-4 rounded-full font-bold shadow-sm">
+                點擊許下願望
+            </button>
+
+            <div id="wishNotice"
+                class="mt-8 text-[#8DAA91] font-medium opacity-0 transition-all duration-1000 transform translate-y-2">
+                笑死，我還沒有那麼厲害！姑且當作生日蠟燭的效果吧！ 🌿
+            </div>
+        </div>
+
+        <!-- 頁尾 -->
+        <footer class="mt-24 pb-10 text-center text-stone-300 text-[10px] tracking-[0.5em] uppercase">
+            Minimalist Birthday Blessing
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnWish = document.getElementById('btnWish');
+            const wishNotice = document.getElementById('wishNotice');
+            const palette = ['#8DAA91', '#C2D3C6', '#E8F0E9', '#A3B899'];
+
+            btnWish.addEventListener('click', function () {
+                // 按鈕狀態更新
+                this.textContent = "願望已傳達 ✨";
+                this.style.opacity = "0.6";
+                this.style.pointerEvents = "none";
+
+                // 顯示文字
+                wishNotice.classList.remove('opacity-0', 'translate-y-2');
+
+                // 噴發紙屑動畫
+                for (let i = 0; i < 45; i++) {
+                    createEcoConfetti();
+                }
+            });
+
+            function createEcoConfetti() {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = '-20px';
+
+                // 隨機大小與形狀
+                const size = Math.random() * 8 + 4 + 'px';
+                particle.style.width = size;
+                particle.style.height = size;
+                particle.style.backgroundColor = palette[Math.floor(Math.random() * palette.length)];
+                particle.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                particle.style.zIndex = '1000';
+                particle.style.pointerEvents = 'none';
+
+                document.body.appendChild(particle);
+
+                const duration = Math.random() * 2000 + 3000;
+                const destinationX = (Math.random() - 0.5) * 200; // 隨機左右飄移
+
+                const animation = particle.animate([
+                    { transform: 'translateY(0) rotate(0) translateX(0)', opacity: 1 },
+                    { transform: `translateY(105vh) rotate(${Math.random() * 1000}deg) translateX(${destinationX}px)`, opacity: 0 }
+                ], {
+                    duration: duration,
+                    easing: 'cubic-bezier(0.1, 0.4, 0.3, 1)'
+                });
+
+                animation.onfinish = () => particle.remove();
+            }
+        });
+    </script>
+</body>
+
+</html>
